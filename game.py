@@ -17,6 +17,9 @@ class Game:
     # fuegos artificiales
     self.fireworks = Fireworks()
 
+    self.text_surface = self.font.render("Feliz Aniversario UPEC", True, (255, 255, 255))
+    self.text_rect = self.text_surface.get_rect(center=(WIN_WIDTH/2, WIN_HEIGHT/2))  
+
   def start(self):
     while self.running:
       for event in pygame.event.get():
@@ -42,6 +45,8 @@ class Game:
         pygame.draw.circle(self.screen, firework['color'], (int(firework["position"][0]), int(firework["position"][1])), 3)
       for particle in self.fireworks.particles:
         pygame.draw.circle(self.screen, particle['color'], (int(particle['position'][0]), int(particle['position'][1])), 2)
+
+      self.screen.blit(self.text_surface, self.text_rect)  
 
       pygame.display.flip()
 
