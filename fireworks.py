@@ -16,4 +16,7 @@ class Fireworks:
     self.amount_particle = vector(200, 600)
   
   def update(self, win):
-    if not self.explded
+    if not self.exploded:
+      self.firework.appl
+
+
