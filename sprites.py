@@ -4,18 +4,25 @@ import pygame
 class Sprites:
   def __init__(self):
     # grupo de sprites de la intro
-    self.intro_group = pygame.sprite.Group() 
+    self.group = pygame.sprite.Group() 
 
-    
+  def addSpriteGroup(self, sprite):
+    self.group.add(sprite) 
+
+  def showSprite(self, screen):
+    self.group.draw(screen)
+
+
+"""
+Esta clase se manejara todos los sprites sobre la intro
+ * agregar sprites en un grupo
+ * mostrar los sprites en pantalla
+"""  
+class SpritesIntro(Sprites):
+  def __init__(self):
+    super().__init__()
   
-  def addIntro(self, path_image, x, y):
+  def addIntroSprite(self, path_image, x, y):
     intro_sprite = Intro(path_image, x, y)
-    self.addSpriteIntroGroup(intro_sprite)
-
+    self.addSpriteGroup(intro_sprite)
     return intro_sprite
-
-  def addSpriteIntroGroup(self, sprite):
-    self.intro_group.add(sprite) 
-
-  def showSpriteIntro(self, screen):
-    self.intro_group.draw(screen)

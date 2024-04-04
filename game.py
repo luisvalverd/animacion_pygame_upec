@@ -1,6 +1,6 @@
 import pygame
 from config import *
-from sprites import Sprites
+from sprites import SpritesIntro
 import random
 from fireworks import Fireworks
 
@@ -30,9 +30,9 @@ class Game:
     self.handleSpriteIntro()
   
   def handleSpriteIntro(self):
-    self.sprites_intro = Sprites()
-    self.logo_intro_1 = self.sprites_intro.addIntro(LOGO_UPEC_LEFT, 0, 0)
-    self.logo_intro_2 = self.sprites_intro.addIntro(LOGO_UPEC_RIGHT, WIN_WIDTH // 2, 0)
+    self.sprites_intro = SpritesIntro()
+    self.logo_intro_1 = self.sprites_intro.addIntroSprite(LOGO_UPEC_LEFT, 0, 0)
+    self.logo_intro_2 = self.sprites_intro.addIntroSprite(LOGO_UPEC_RIGHT, WIN_WIDTH // 2, 0)
 
   def start(self):
     while self.running:
@@ -62,11 +62,14 @@ class Game:
 
       self.screen.blit(self.text_surface, self.text_rect)  
 
+      waiting_done = self.logo_intro_1
+
+      # movimiento de los logos
       self.logo_intro_1.rect.x -= 15
       self.logo_intro_2.rect.x += 15
 
-
-      self.sprites_intro.showSpriteIntro(self.screen)
+      # mostrar los logos en pantalla
+      self.sprites_intro.showSprite(self.screen)
 
       pygame.display.flip()
 
