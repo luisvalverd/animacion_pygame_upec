@@ -1,5 +1,6 @@
 import pygame
 from config import *
+from sprites import Sprites
 import random
 from fireworks import Fireworks
 
@@ -19,6 +20,19 @@ class Game:
 
     self.text_surface = self.font.render("Feliz Aniversario UPEC", True, (255, 255, 255))
     self.text_rect = self.text_surface.get_rect(center=(WIN_WIDTH/2, WIN_HEIGHT/2))  
+
+    # sprites of intro
+    self.sprites_intro = None
+    self.logo_intro_1 = None
+    self.logo_intro_2 = None
+
+    #handlers
+    self.handleSpriteIntro()
+  
+  def handleSpriteIntro(self):
+    self.sprites_intro = Sprites()
+    self.logo_intro_1 = self.sprites_intro.addIntro(LOGO_UPEC_LEFT, 0, 0)
+    self.logo_intro_2 = self.sprites_intro.addIntro(LOGO_UPEC_RIGHT, WIN_WIDTH // 2, 0)
 
   def start(self):
     while self.running:
@@ -47,6 +61,12 @@ class Game:
         pygame.draw.circle(self.screen, particle['color'], (int(particle['position'][0]), int(particle['position'][1])), 2)
 
       self.screen.blit(self.text_surface, self.text_rect)  
+
+      self.logo_intro_1.rect.x -= 15
+      self.logo_intro_2.rect.x += 15
+
+
+      self.sprites_intro.showSpriteIntro(self.screen)
 
       pygame.display.flip()
 
