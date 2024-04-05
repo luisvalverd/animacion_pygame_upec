@@ -1,5 +1,6 @@
 import pygame
 from domain.config import *
+from domain.intro_rule import createAnimation
 from models.intro_sprite import SpritesIntro
 import random
 from fireworks import Fireworks
@@ -28,6 +29,7 @@ class Game:
 
     #handlers
     self.handleSpriteIntro()
+    self.handler_animation_intro = createAnimation(self.logo_intro_1, self.logo_intro_2, 2)
   
   def handleSpriteIntro(self):
     self.sprites_intro = SpritesIntro()
@@ -62,11 +64,16 @@ class Game:
 
       self.screen.blit(self.text_surface, self.text_rect)  
 
+      """
       waiting_done = self.logo_intro_1
 
       # movimiento de los logos
       self.logo_intro_1.rect.x -= 15
       self.logo_intro_2.rect.x += 15
+      """
+
+      self.handler_animation_intro.waitingAnimation()
+      
 
       # mostrar los logos en pantalla
       self.sprites_intro.showSprite(self.screen)
