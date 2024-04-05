@@ -1,13 +1,16 @@
-from types.config import *
+from domain.config import *
 
-class HandlerTimeAnimation:
-  def __init__(self, time_animation):
-    self.time_animation = time_animation # los frames de la animacion
-    self.animation_done = False
+class HandlerAnimation:
+  def __init__(self):
+    self.waiting_time= 0 # los frames de espera de la animacion
+    self.__animation_done = False
+    self.__waiting = False 
 
-  def timeAnimation(self):
-    if not self.animation_done:
-      self.time_animation -= 1
-      if self.time_animation <= 0:
-        self.animation_done = True
-        # reiniciar posicion de los sprites 
+  def stop(self):
+    self.__animation_done = True
+    return self.__animation_done
+
+  # transformamos los segundos a fotogramas
+  def setTimeAnimation(self, waiting_time):
+    self.waiting_time = waiting_time* 60
+      

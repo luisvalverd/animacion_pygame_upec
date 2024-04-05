@@ -1,5 +1,5 @@
 from animations.intro import Intro
-from types.sprites import Sprites
+from models.sprites import Sprites
 
 """
 Esta clase se manejara todos los sprites sobre la intro

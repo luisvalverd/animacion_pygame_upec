@@ -1,6 +1,6 @@
 import pygame
 import sys
-from types.config import *
+from domain.config import * 
 
 # Inicializa Pygame
 pygame.init()
@@ -15,11 +15,11 @@ WHITE = (255, 255, 255)
 
 # Clase para el sprite de la imagen
 class Image(pygame.sprite.Sprite):
-  def __init__(self, image_path, x, y):
-    super().__init__()
-    self.image = pygame.image.load(image_path)
-    self.rect = self.image.get_rect()
-    self.rect.topleft = (x, y)
+    def __init__(self, image_path, x, y):
+        super().__init__()
+        self.image = pygame.image.load(image_path)
+        self.rect = self.image.get_rect()
+        self.rect.topleft = (x, y)
 
 # Configuración de la pantalla
 screen = pygame.display.set_mode(SCREEN_SIZE)
@@ -44,44 +44,48 @@ clock = pygame.time.Clock()
 # Variables de control
 waiting_done = False
 transition_done = False
+animation_done = False
 
 running = True
 while running:
-  for event in pygame.event.get():
-    if event.type == pygame.QUIT:
-      running = False
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
 
-  if not waiting_done:
-    # Espera durante waiting_frames antes de iniciar la transición
-    waiting_frames -= 1
-    if waiting_frames <= 0:
-      waiting_done = True
-      # Reiniciar la posición de las imágenes para la transición
-      image1_sprite.rect.x = -WIDTH // 2
-      image2_sprite.rect.x = WIDTH
+    if not waiting_done:
+        # Espera durante waiting_frames antes de iniciar la transición
+        waiting_frames -= 1
+        if waiting_frames <= 0:
+            waiting_done = True
+            # Reiniciar la posición de las imágenes para la transición
+            image1_sprite.rect.x = -WIDTH // 2
+            image2_sprite.rect.x = WIDTH
 
-  elif not transition_done:
-    # Actualiza las posiciones de las imágenes para lograr el efecto de transición
-    image1_sprite.rect.x += transition_speed
-    image2_sprite.rect.x -= transition_speed
+    elif not transition_done:
+        # Actualiza las posiciones de las imágenes para lograr el efecto de transición
+        image1_sprite.rect.x += transition_speed
+        image2_sprite.rect.x -= transition_speed
 
-    # Si la transición ha terminado, marca transition_done como True
-    if image1_sprite.rect.x >= 0 and image2_sprite.rect.x <= 0:
-      transition_done = True
+        # Si la transición ha terminado, marca transition_done como True
+        if image1_sprite.rect.x >= 0 and image2_sprite.rect.x <= 0:
+            transition_done = True
 
-  # Dibuja los sprites en la pantalla
-  screen.fill(WHITE)
-  all_sprites.draw(screen)
+    # Si la transición ha terminado, detén la animación
+    if transition_done and not animation_done:
+        animation_done = True
 
-  # Actualiza la pantalla
-  pygame.display.flip()
+    # Dibuja los sprites en la pantalla
+    screen.fill(WHITE)
+    all_sprites.draw(screen)
 
-  # Controla la velocidad del bucle
-  clock.tick(60)
+    # Actualiza la pantalla
+    pygame.display.flip()
 
-  # Si la transición ha terminado, sal del bucle
-  if transition_done:
-    break
+    # Controla la velocidad del bucle
+    clock.tick(60)
+
+    # Si la animación ha terminado, sal del bucle
+  
 
 pygame.quit()
 sys.exit()

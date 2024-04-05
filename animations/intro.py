@@ -1,5 +1,6 @@
 import pygame
-from types.config import *
+import os
+from domain.config import *
 
 class Intro(pygame.sprite.Sprite):
   def __init__(self, image_path, x, y):
@@ -11,8 +12,6 @@ class Intro(pygame.sprite.Sprite):
 
   def setTransitionDone(self, transition_done):
     self.transition_done = transition_done
-  
-
 
 
 
