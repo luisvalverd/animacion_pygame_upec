@@ -1,6 +1,6 @@
 import random
 import math
-from config import *
+from types.config import *
 
 class Fireworks:
   def __init__(self):

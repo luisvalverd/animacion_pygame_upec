@@ -1,6 +1,6 @@
 import pygame
 import sys
-from config import *
+from types.config import *
 
 # Inicializa Pygame
 pygame.init()

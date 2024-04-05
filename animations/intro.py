@@ -1,5 +1,5 @@
 import pygame
-from config import *
+from types.config import *
 
 class Intro(pygame.sprite.Sprite):
   def __init__(self, image_path, x, y):

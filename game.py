@@ -1,6 +1,6 @@
 import pygame
-from config import *
-from sprites import SpritesIntro
+from types.config import *
+from sprites.intro_sprite import SpritesIntro
 import random
 from fireworks import Fireworks
 
