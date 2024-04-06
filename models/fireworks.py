@@ -1,6 +1,7 @@
 import pygame
 from random import randint
 from domain.config import *
+from models.particle import Particle # type: ignore
 
 
 class Firework:
@@ -21,6 +22,13 @@ class Firework:
     for _ in range(amount):
       self.particles.append(Particle(self.firework.pos.x, self.firework.pos.y, False, self.colors))
 
-  def show(self, screen):
-    pygame.draw.circle(screen, self.color, (int(self.firework.pos.x), int(self.firework.pos.y)),
-                       self.firework.size)
+  def remove(self):
+    if self.exploded:
+      for p in self.particles:
+        if p.remove is True:
+          self.particles.remove(p)
+
+      if len(self.particles) == 0:
+        return True
+      else:
+        return False

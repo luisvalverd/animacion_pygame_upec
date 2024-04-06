@@ -16,3 +16,7 @@ GRAVITY = VECTOR(0, 0.3)
 
 # colores de la cola del fuego artificial
 TRAIL_COLORS = [(45, 45, 45), (60, 60, 60), (75, 75, 75), (125, 125, 125), (150, 150, 150)]
+
+# movimientos dinamicos 
+DYNAIC_OFFSET = 2
+STATIC_OFFSET = 5

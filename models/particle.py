@@ -1,6 +1,7 @@
 from domain.config import *
 from random import randint, choice, uniform
-from models.trail import Trail
+from models.trail import Trail # type: ignore
+import math
 
 class Particle:
   def __init__(self, x, y, firework, colors):
@@ -34,5 +35,47 @@ class Particle:
       for i in range(5):
         self.trails.append(Trail(i, self.size, False))
 
-  def apply_force(self, force):
+  def applyForce(self, force):
     self.acceleration += force
+
+  def move(self):
+    if not self.firework:
+      self.velocity.x *= 0.8
+      self.velocity.y *= 0.8
+
+    self.velocity += self.acceleration
+    self.pos += self.velocity
+    self.acceleration *= 0
+
+    if self.life == 0 and not self.firework:
+      distance = math.sqrt((self.pos.x - self.origin.x) ** 2 + (self.pos.y - self.origin.y) ** 2)
+      if distance > self.explosion_radius:
+        self.remove = True
+
+    self.decay()
+    self.trailUpdate()
+    self.life += 1
+
+  def decay(self):
+    if 50 > self.life > 10:
+      ran = randint(0, 30)
+
+      if ran == 0:
+        self.remove = True
+    
+    elif self.life > 50:
+      ran = randint(0, 5)
+      if ran == 0:
+        self.remove = True
+
+  def trailUpdate(self):
+    self.prev_posx.pop()
+    self.prev_posx.insert(0, int(self.pos.x))
+    self.prev_posy.pop()
+    self.prev_posy.insert(0, int(self.pos.y))
+
+    for n, t in enumerate(self.trails):
+      if t.dynamic:
+        t.set_pos(self.prev_posx[n + DYNAIC_OFFSET], self.prev_posy[n + DYNAIC_OFFSET])
+      else:
+        t.set_pos(self.prev_posx[n + STATIC_OFFSET], self.prev_posy[n + STATIC_OFFSET])
