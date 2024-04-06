@@ -15,7 +15,7 @@ class FireworkRules(Firework):
 
       self.show(screen)
 
-      if self.firework.vel.y >= 0:
+      if self.firework.velocity.y >= 0:
         self.exploded = True
         self.explode()
 
@@ -35,3 +35,10 @@ class FireworkRules(Firework):
                        self.firework.size)
     
 
+def update(screen, fireworks):
+  for fw in fireworks:
+    fw.update(screen)
+    if fw.remove():
+      fireworks.remove(fw)
+
+  pygame.display.update()

@@ -2,8 +2,9 @@ import pygame
 from domain.config import *
 from domain.intro_rule import createAnimation, createIntroSprite
 from domain.sprites_group_rule import createSpritesGroup
+from domain.firework import FireworkRules, update
 import random
-from fireworks import Fireworks
+
 
 class Game:
   def __init__(self):
@@ -17,7 +18,7 @@ class Game:
     self.screen.blit(self.background, (0, 0))
 
     # fuegos artificiales
-    self.fireworks = Fireworks()
+    self.fireworks = [FireworkRules() for i in range(4)]
 
     self.text_surface = self.font.render("Feliz Aniversario UPEC", True, (255, 255, 255))
     self.text_rect = self.text_surface.get_rect(center=(WIN_WIDTH/2, WIN_HEIGHT/2))  
@@ -44,30 +45,27 @@ class Game:
 
   def start(self):
     while self.running:
+      self.clock.tick(60)
       for event in pygame.event.get():
         if event.type == pygame.QUIT:
           self.running = False
 
-      # generar fuegos artificiales 
-      if random.random() < 0.02: 
-        self.fireworks.createFirework()
+        # generar fuegos artificiales 
+        if event.type == pygame.KEYDOWN:
+          if event.key == pygame.K_1:
+            self.fireworks.append(FireworkRules()) 
 
-      for firework in self.fireworks.fireworks:
-        self.fireworks.updateFirework(firework)
+          if event.key == pygame.K_2:
+            for _ in range(10):
+              self.fireworks.append(FireworkRules())
 
-      for particle in self.fireworks.particles:
-        particle["position"][0] += particle["velocity"][0]
-        particle["position"][1] += particle["velocity"][1]
-        particle["ttl"] -= 1
-        if particle['ttl'] <= 0:
-          self.fireworks.particles.remove(particle)
-      
+      if random.randint(0, 20) == 1:
+        self.fireworks.append(FireworkRules())
+
+      update(self.screen ,self.fireworks)
+
       self.screen.blit(self.background, (0, 0))
-      for firework in self.fireworks.fireworks:
-        pygame.draw.circle(self.screen, firework['color'], (int(firework["position"][0]), int(firework["position"][1])), 3)
-      for particle in self.fireworks.particles:
-        pygame.draw.circle(self.screen, particle['color'], (int(particle['position'][0]), int(particle['position'][1])), 2)
-
+      # title
       self.screen.blit(self.text_surface, self.text_rect)  
 
       # maneja todo de la animacion
@@ -78,7 +76,7 @@ class Game:
 
       pygame.display.flip()
 
-      self.clock.tick(60)
+     
 
     pygame.quit()
 

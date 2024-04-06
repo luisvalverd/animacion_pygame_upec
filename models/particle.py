@@ -1,6 +1,6 @@
 from domain.config import *
 from random import randint, choice, uniform
-from models.trail import Trail # type: ignore
+from domain.trail import TrailRules  # type: ignore
 import math
 
 class Particle:
@@ -23,7 +23,7 @@ class Particle:
       self.size = 5
       self.color = choice(colors)
       for i in range(5):
-        self.trails.append(Trail(i, self.size, True))
+        self.trails.append(TrailRules(i, self.size, True))
 
     # configurarion de la particula en caso de ser de una explocion
     else:
@@ -33,7 +33,7 @@ class Particle:
       self.size = randint(2, 4)
       self.color = choice(colors)
       for i in range(5):
-        self.trails.append(Trail(i, self.size, False))
+        self.trails.append(TrailRules(i, self.size, False))
 
   def applyForce(self, force):
     self.acceleration += force
