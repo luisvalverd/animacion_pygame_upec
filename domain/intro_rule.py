@@ -1,5 +1,5 @@
 import os
-from animations.intro import Intro
+from models.sprites.intro import Intro
 from models.validators.validation import ValidationError
 from domain.config import WIN_WIDTH
 from controller.intro_controller import IntroAnimation

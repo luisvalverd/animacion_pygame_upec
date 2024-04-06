@@ -3,7 +3,7 @@ import pygame
 """
 Clase base para manejar cada grupo de animacion de los sprites
 """
-class Sprites:
+class SpritesGroup:
   def __init__(self):
     # grupo de sprites de la intro
     self.group = pygame.sprite.Group() 

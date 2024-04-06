@@ -1,5 +1,5 @@
 from controller.animation_controller import HandlerAnimation 
-from animations.intro import Intro
+from models.sprites.intro import Intro
 from domain.config import *
 
 """

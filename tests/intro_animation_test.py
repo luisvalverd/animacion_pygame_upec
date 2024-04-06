@@ -1,9 +1,11 @@
 from unittest import TestCase
 from assertpy import assert_that
 
+# libraries
+import pygame
+
 # modules de la introduccion
 from models.validators.validation import ValidationError
-from controller.intro_controller import IntroAnimation
 from domain.intro_rule import createIntroSprite
 from domain.config import *
 
@@ -16,3 +18,6 @@ class TestIntroAnimation(TestCase):
     intro = createIntroSprite(LOGO_UPEC_LEFT, 0, 0)
     assert_that(intro.image.get_rect().topleft).is_equal_to((0, 0))
 
+  def test_get_rect_of_image(sefl):
+    intro = createIntroSprite(LOGO_UPEC_LEFT, 0, 0)
+    assert_that(intro.rect).is_type_of(pygame.Rect)
