@@ -16,7 +16,7 @@ class IntroAnimation(HandlerAnimation):
     self.__logo_rigth = logo_rigth
     self.transition_speed = transition_speed
 
-    # llamado de los atributos privados de la clase
+    # llamado de variables privadas
     self.__waiting_done = self._HandlerAnimation__waiting_done
     self.__animation_done = self._HandlerAnimation__animation_done
     self.__transition_done = self._HandlerAnimation__transition_done
@@ -35,12 +35,6 @@ class IntroAnimation(HandlerAnimation):
       self.__transition_done = self.updatePositionIntroSprites()
     
     self.stop()
-
-  # detener la animacion
-  def stop(self):
-    if self.__transition_done and not self.__animation_done:
-      self.__animation_done = True
-
 
   """
     actualiza la posicion de los sprites y retorna el estado

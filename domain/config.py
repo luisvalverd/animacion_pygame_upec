@@ -12,7 +12,7 @@ LOGO_UPEC_RIGHT = "img/logo_upec_right.jpeg"
 VECTOR = pygame.math.Vector2
 
 # gravedad
-GRAVITY = VECTOR(0, 0.3)
+GRAVITY = VECTOR(0, 0.26)
 
 # colores de la cola del fuego artificial
 TRAIL_COLORS = [(45, 45, 45), (60, 60, 60), (75, 75, 75), (125, 125, 125), (150, 150, 150)]

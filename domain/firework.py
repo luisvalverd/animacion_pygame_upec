@@ -34,7 +34,6 @@ class FireworkRules(Firework):
     pygame.draw.circle(screen, self.color, (int(self.firework.pos.x), int(self.firework.pos.y)),
                        self.firework.size)
     
-
 def update(screen, fireworks):
   for fw in fireworks:
     fw.update(screen)
@@ -42,3 +41,5 @@ def update(screen, fireworks):
       fireworks.remove(fw)
 
   pygame.display.update()
+
+

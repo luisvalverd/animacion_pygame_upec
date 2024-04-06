@@ -19,4 +19,9 @@ class HandlerAnimation:
   # transformamos los segundos a fotogramas
   def setTimeAnimation(self, waiting_time):
     self.waiting_time = waiting_time * 60
+
+  # detener la animacion
+  def stop(self):
+    if self.__transition_done and not self.__animation_done:
+      self.__animation_done = True
       

@@ -2,7 +2,8 @@ import pygame
 from domain.config import *
 from domain.intro_rule import createAnimation, createIntroSprite
 from domain.sprites_group_rule import createSpritesGroup
-from domain.firework import FireworkRules, update
+from domain.firework import FireworkRules 
+from domain.firework_rule import createFireworkAnimation # type: ignore
 import random
 
 
@@ -18,7 +19,7 @@ class Game:
     self.screen.blit(self.background, (0, 0))
 
     # fuegos artificiales
-    self.fireworks = [FireworkRules() for i in range(4)]
+    self.fireworks = [FireworkRules() for _ in range(4)]
 
     self.text_surface = self.font.render("Feliz Aniversario UPEC", True, (255, 255, 255))
     self.text_rect = self.text_surface.get_rect(center=(WIN_WIDTH/2, WIN_HEIGHT/2))  
@@ -31,7 +32,7 @@ class Game:
     #handlers
     self.handleSpriteIntro()
     self.handler_animation_intro = createAnimation(self.logo_intro_1, self.logo_intro_2, 2)
-  
+    self.handler_fireworks = createFireworkAnimation(self.fireworks, 5, self.screen)
 
   """
   maneja la construccion de los sprites 
@@ -56,13 +57,13 @@ class Game:
             self.fireworks.append(FireworkRules()) 
 
           if event.key == pygame.K_2:
-            for _ in range(10):
+            for _ in range(7):
               self.fireworks.append(FireworkRules())
 
       if random.randint(0, 20) == 1:
         self.fireworks.append(FireworkRules())
 
-      update(self.screen ,self.fireworks)
+      self.handler_fireworks.waitingAnimation()      
 
       self.screen.blit(self.background, (0, 0))
       # title
