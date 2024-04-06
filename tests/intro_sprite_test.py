@@ -5,6 +5,7 @@ from assertpy import assert_that
 import pygame
 
 # modules de la introduccion
+from models.sprites.intro import Intro
 from models.validators.validation import ValidationError
 from domain.intro_rule import createIntroSprite
 from domain.config import *
@@ -21,3 +22,7 @@ class TestIntroAnimation(TestCase):
   def test_get_rect_of_image(sefl):
     intro = createIntroSprite(LOGO_UPEC_LEFT, 0, 0)
     assert_that(intro.rect).is_type_of(pygame.Rect)
+  
+  def test_create_Intro_successfull(self):
+    intro = createIntroSprite(LOGO_UPEC_LEFT, 0, 0)
+    assert_that(intro).is_type_of(Intro)

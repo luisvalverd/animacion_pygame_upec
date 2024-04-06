@@ -1,7 +1,7 @@
 import pygame
 from domain.config import *
-from domain.intro_rule import createAnimation
-from models.intro_sprite import SpritesIntro
+from domain.intro_rule import createAnimation, createIntroSprite
+from domain.sprites_group_rule import createSpritesGroup
 import random
 from fireworks import Fireworks
 
@@ -23,7 +23,7 @@ class Game:
     self.text_rect = self.text_surface.get_rect(center=(WIN_WIDTH/2, WIN_HEIGHT/2))  
 
     # sprites of intro
-    self.sprites_intro = None
+    self.sprites_intro_group = createSpritesGroup()
     self.logo_intro_1 = None
     self.logo_intro_2 = None
 
@@ -37,9 +37,10 @@ class Game:
   agrega los sprites de la intro a un grupo de sprites
   """
   def handleSpriteIntro(self):
-    self.sprites_intro = SpritesIntro()
-    self.logo_intro_1 = self.sprites_intro.addIntroSprite(LOGO_UPEC_LEFT, 0, 0)
-    self.logo_intro_2 = self.sprites_intro.addIntroSprite(LOGO_UPEC_RIGHT, WIN_WIDTH // 2 + 37, 0)
+    self.logo_intro_1 = createIntroSprite(LOGO_UPEC_LEFT, 0, 0)
+    self.logo_intro_2 = createIntroSprite(LOGO_UPEC_RIGHT, WIN_WIDTH // 2 + 37, 0)
+    self.sprites_intro_group.addSpriteGroup(self.logo_intro_1)
+    self.sprites_intro_group.addSpriteGroup(self.logo_intro_2)
 
   def start(self):
     while self.running:
@@ -73,7 +74,7 @@ class Game:
       self.handler_animation_intro.waitingAnimation()      
 
       if not self.handler_animation_intro.get_waiting_done():
-        self.sprites_intro.showSprite(self.screen)
+        self.sprites_intro_group.showSprite(self.screen)
 
       pygame.display.flip()
 
