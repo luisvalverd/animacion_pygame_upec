@@ -28,7 +28,7 @@ class IntroAnimation(HandlerAnimation):
     if not self.__waiting_done:
       self.waiting_time -= 1
       if self.waiting_time <= 0:
-        self.__waiting_done= True
+        self.__waiting_done = True
         # Reiniciar la posicion de la intro
 
     elif not self.__transition_done:

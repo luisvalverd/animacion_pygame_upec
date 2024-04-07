@@ -1,9 +1,10 @@
 import pygame
 from domain.config import *
 from domain.intro_rule import createAnimation, createIntroSprite
-from domain.sprites_group_rule import createSpritesGroup
+from domain.sprites_group_rule import createSpritesGroup, addSpriteAGroup
 from domain.firework import FireworkRules 
 from domain.firework_rule import createFireworkAnimation # type: ignore
+from domain.people_rule import createPeople, createAnimationPeopleEntrance
 import random
 
 
@@ -24,15 +25,20 @@ class Game:
     self.text_surface = self.font.render("Feliz Aniversario UPEC", True, (255, 255, 255))
     self.text_rect = self.text_surface.get_rect(center=(WIN_WIDTH/2, WIN_HEIGHT/2))  
 
-    # sprites of intro
+    # sprites de intro
     self.sprites_intro_group = createSpritesGroup()
     self.logo_intro_1 = None
     self.logo_intro_2 = None
+
+    # sprites de people
+  
 
     #handlers
     self.handleSpriteIntro()
     self.handler_animation_intro = createAnimation(self.logo_intro_1, self.logo_intro_2, 2)
     self.handler_fireworks = createFireworkAnimation(self.fireworks, 5, self.screen)
+
+
 
   """
   maneja la construccion de los sprites 
@@ -41,8 +47,8 @@ class Game:
   def handleSpriteIntro(self):
     self.logo_intro_1 = createIntroSprite(LOGO_UPEC_LEFT, 0, 0)
     self.logo_intro_2 = createIntroSprite(LOGO_UPEC_RIGHT, WIN_WIDTH // 2 + 37, 0)
-    self.sprites_intro_group.addSpriteGroup(self.logo_intro_1)
-    self.sprites_intro_group.addSpriteGroup(self.logo_intro_2)
+    addSpriteAGroup(self.sprites_intro_group, self.logo_intro_1)
+    addSpriteAGroup(self.sprites_intro_group, self.logo_intro_2)
 
   def start(self):
     while self.running:
@@ -65,6 +71,8 @@ class Game:
 
       self.handler_fireworks.waitingAnimation()      
 
+
+
       self.screen.blit(self.background, (0, 0))
       # title
       self.screen.blit(self.text_surface, self.text_rect)  
@@ -76,8 +84,6 @@ class Game:
         self.sprites_intro_group.showSprite(self.screen)
 
       pygame.display.flip()
-
-     
 
     pygame.quit()
 
