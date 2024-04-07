@@ -3,7 +3,7 @@ from models.sprites.people import People # type: ignore
 from models.validators.validation import ValidationError
 from controller.people_controller import PeopleEntranceAnimation # type: ignore
 
-def createPeople(image_path, x, y):
+def createPeopleSprite(image_path, x, y):
   if not os.path.isfile(image_path):
     return ValidationError(f"Error archivo {image_path} no encontrado")
 

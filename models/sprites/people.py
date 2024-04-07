@@ -1,4 +1,5 @@
 import pygame
+from domain.config import *
 
 
 class People(pygame.sprite.Sprite):
@@ -6,5 +7,8 @@ class People(pygame.sprite.Sprite):
     super().__init__()
     self.image = pygame.image.load(image_path)
     self.rect = self.image.get_rect()
-    self.rect.bottomleft(x, y)
-    
+    self.rect.topleft = (x, y)
+    """
+    self.rect.centerx = WIN_WIDTH // 2
+    self.rect.bottom = WIN_HEIGHT
+    """
