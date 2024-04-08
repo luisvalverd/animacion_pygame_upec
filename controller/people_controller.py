@@ -2,11 +2,11 @@ from controller.animation_controller import HandlerAnimation
 from models.sprites.people import People # type: ignore
 
 class PeopleEntranceAnimation(HandlerAnimation):
-  def __init__(self, people: People, transition_speed = 5, duration_animation=5):
+  def __init__(self, people: People, transition_speed = 2, duration_animation=5):
     super(PeopleEntranceAnimation, self).__init__()
     self.__peolple = people
     self.transition_speed = transition_speed
-    self.duration_animation = duration_animation
+    self.duration_animation = duration_animation * 60
 
     self.__waiting_done = self._HandlerAnimation__waiting_done
     self.__animation_done = self._HandlerAnimation__animation_done
@@ -21,15 +21,15 @@ class PeopleEntranceAnimation(HandlerAnimation):
     elif not self.__transition_done:
       self.__transition_done = self.updatePositionPeolpleEntranceSprite()
 
-    #self.stop()
+    self.stop()
   
   def updatePositionPeolpleEntranceSprite(self):
-    #self.__peolple.rect.y += self.transition_speed
+    self.__peolple.rect.y -= self.transition_speed
 
-    if self.duration_animation <= 0:
+    if self.duration_animation >= 0:
+      self.duration_animation -= 1
       return False
     else:
-      self.duration_animation -= 1
       return True
 
      

@@ -9,6 +9,9 @@ LOGO_UPEC_LEFT = "img/logo_upec_left.jpeg"
 LOGO_UPEC_RIGHT = "img/logo_upec_right.jpeg"
 PEOPLE_1 = "img/people_group_1.png"
 
+# ruta de los audios
+BG_MUSIC ="sounds/background_music.mp3"
+
 # vector 
 VECTOR = pygame.math.Vector2
 

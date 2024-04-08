@@ -37,7 +37,7 @@ class Game:
     #handlers
     self.handleSpriteIntro()
     self.handler_animation_intro = createAnimation(self.logo_intro_1, self.logo_intro_2, 2)
-    self.handler_fireworks = createFireworkAnimation(self.fireworks, 5, self.screen)
+    self.handler_fireworks = createFireworkAnimation(self.fireworks, 7, self.screen)
     self.handleSpritePoeple()
     self.handler_people = createAnimationPeopleEntrance(self.people_1, 4)
     
@@ -53,7 +53,7 @@ class Game:
     addSpriteAGroup(self.sprites_intro_group, self.logo_intro_2)
 
   def handleSpritePoeple(self):
-    self.people_1 = createPeopleSprite(PEOPLE_1, 0, 0)
+    self.people_1 = createPeopleSprite(PEOPLE_1, 0, WIN_HEIGHT)
     addSpriteAGroup(self.sprite_people_group, self.people_1)
 
   def start(self):
