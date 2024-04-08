@@ -150,7 +150,8 @@ class Game:
         self.handler_animation_intro.waitingAnimation()      
         if not self.handler_animation_intro.get_waiting_done():
           self.sprites_intro_group.showSprite(self.screen)
-
+      else :
+        pygame.mixer.Channel(0).stop()
         
 
       pygame.display.flip()
