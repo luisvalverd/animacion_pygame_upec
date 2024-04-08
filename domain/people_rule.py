@@ -14,8 +14,8 @@ def createPeopleSprite(image_path, x, y):
 
   return people_sprite
 
-def createAnimationPeopleEntrance(people: People, time_animation):
-  people_entrance_animation = PeopleEntranceAnimation(people, duration_animation=3.4)
+def createAnimationPeopleEntrance(people_1: People, people_2: People,time_animation):
+  people_entrance_animation = PeopleEntranceAnimation(people_1, people_2, duration_animation=3.2)
   people_entrance_animation.setTimeAnimation(time_animation)
 
   return people_entrance_animation

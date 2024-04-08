@@ -8,7 +8,6 @@ Esta funcion se manejara todos los sprites sobre la intro
 """  
 def addSpriteAGroup(group: SpritesGroup, value: Sprite):
   if type(group) != SpritesGroup:
-    print('ok')
     return ValidationError("El grupo no coincide con el tipo esperado") 
   
   if not isinstance(value, Sprite):
