@@ -53,6 +53,8 @@ class Game:
     self.mixer_people.set_volume(0.2)
 
     self.switch_sound = pygame.mixer.Sound(SWITCH_DOWN)
+    self.mixer_switch = SoundController(1, self.switch_sound, 1, 20)
+    self.mixer_switch.set_volume(0.8)
 
     # channel de musica de fondo
     pygame.mixer.Channel(0).set_volume(0.01)
@@ -67,6 +69,8 @@ class Game:
 
     self.is_bg_img = True
     self.bg_time = 31 * 60
+
+    self.switch_time = 30
   
   """
   maneja la construccion de los sprites 
@@ -153,9 +157,11 @@ class Game:
         if not self.handler_animation_intro.get_waiting_done():
           self.sprites_intro_group.showSprite(self.screen)
       else :
-        pygame.mixer.Channel(3).play(self.switch_sound)
-        
         pygame.mixer.Channel(0).stop()
+        self.mixer_switch.waitingSound()
+        
+        
+        
         
 
       pygame.display.flip()
