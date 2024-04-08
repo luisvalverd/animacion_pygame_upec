@@ -6,6 +6,7 @@ class Trail:
     self.pos = VECTOR(-10, -10)
     self.dynamic = dynamic
 
+    # determinamos el color y el trazo dinamico de la cola
     if self.dynamic:
       self.color = TRAIL_COLORS[n]
       self.size = int(size - n / 2)

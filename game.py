@@ -18,7 +18,7 @@ class Game:
     self.font.set_bold(True)
     self.running = True
 
-    self.background = pygame.image.load("img/center_building.jpeg")
+    self.background = pygame.image.load(BG_BUILDING)
     self.screen.blit(self.background, (0, 0))
 
     # fuegos artificiales

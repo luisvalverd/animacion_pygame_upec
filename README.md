@@ -84,4 +84,24 @@ En la clase de la `Particle` tenemos necesario la posicion en `x` y `y` un `fire
 
 aqui ve manejara el radio de explocion, la vida del fuego artificial, la cola, con su posicion previa una aceleracion y si es remove, 
 
+### SpriteGroup
+esta clase nos ayuda a manejar los diferentes grupos de sprites necesarios el agregar un sprite a un grupo mostrarlos por pantalla o limpiar el contenido
+
+En las reglas de negocio de los sprites group
+tenemos el creador de un grupo y su asignador
+para el asignador tenemos que dar el grupo al cual se va a asignar el sprite y el sprite que se le quiere asignar
+
+
+## Config
+para configurar que musica va sonar o las imagenes o tiempos o la gravedad solo es necesario configurar el archivo `config.py`
+
+la imagen de fondo solo hay que modificar
+```python
+BG_BUILDING = "img/{image_name}"
+```
+
+para la configuracion del sonido
+```python 
+BG_MUSIC = "sounds/{music}"
+```
 

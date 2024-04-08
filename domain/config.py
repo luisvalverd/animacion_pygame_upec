@@ -5,6 +5,7 @@ WIN_WIDTH = 1020
 WIN_HEIGHT = 970 
 
 # rutas de las imagenes
+BG_BUILDING = "img/center_building.jpeg"
 LOGO_UPEC_LEFT = "img/logo_upec_left.jpeg"
 LOGO_UPEC_RIGHT = "img/logo_upec_right.jpeg"
 PEOPLE_1 = "img/people_group_1.png"
