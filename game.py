@@ -52,6 +52,8 @@ class Game:
     self.mixer_people_celebrating = SoundController(2, self.people_celebraing_sound, 15, 16)
     self.mixer_people.set_volume(0.2)
 
+    self.switch_sound = pygame.mixer.Sound(SWITCH_DOWN)
+
     # channel de musica de fondo
     pygame.mixer.Channel(0).set_volume(0.01)
     pygame.mixer.Channel(0).play(self.bg_music, -1)
@@ -151,6 +153,8 @@ class Game:
         if not self.handler_animation_intro.get_waiting_done():
           self.sprites_intro_group.showSprite(self.screen)
       else :
+        pygame.mixer.Channel(3).play(self.switch_sound)
+        
         pygame.mixer.Channel(0).stop()
         
 
