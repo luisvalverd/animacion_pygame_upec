@@ -10,6 +10,7 @@ LOGO_UPEC_LEFT = "img/logo_upec_left.jpeg"
 LOGO_UPEC_RIGHT = "img/logo_upec_right.jpeg"
 PEOPLE_1 = "img/people_group_1.png"
 PEOPLE_2 = "img/people_group_2.png"
+NEON_IMG = "img/18_years_upec.jpeg"
 
 # ruta de los audios
 BG_MUSIC = "sounds/background_music.mp3"

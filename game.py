@@ -38,6 +38,9 @@ class Game:
     self.sprite_people_group = createSpritesGroup() 
     self.people_1 = None
     self.people_2 = None
+
+    self.sprite_neon_group = createSpritesGroup()
+    self.neon = None
     
     pygame.mixer.init(devicename="Realtek(R) Audio")    
 
@@ -56,6 +59,9 @@ class Game:
     self.mixer_switch = SoundController(1, self.switch_sound, 4, 1)
     self.mixer_switch.set_volume(0.8)
 
+    self.neon_sound = pygame.mixer.Sound(NEON_SOUND)
+    self.mixer_neon = SoundController(2, self.neon_sound, 5, 1)
+
     # channel de musica de fondo
     pygame.mixer.Channel(0).set_volume(0.01)
     pygame.mixer.Channel(0).play(self.bg_music, -1)
@@ -64,13 +70,20 @@ class Game:
     self.handleSpriteIntro()
     self.handler_animation_intro = createAnimation(self.logo_intro_1, self.logo_intro_2, 4)
     self.handler_fireworks = createFireworkAnimation(self.fireworks, 15, self.screen)
+
     self.handleSpritePoeple()
     self.handler_people = createAnimationPeopleEntrance(self.people_1, self.people_2, 5)
+
+    self.handleSpriteNeon()
 
     self.is_bg_img = True
     self.bg_time = 31 * 60
 
     self.switch_time = 30
+
+  def handleSpriteNeon(self):
+    self.neon = createIntroSprite(NEON_IMG, 0, 0)
+    addSpriteAGroup(self.sprite_neon_group, self.neon)
   
   """
   maneja la construccion de los sprites 
@@ -159,7 +172,9 @@ class Game:
       else :
         pygame.mixer.Channel(0).stop()
         self.mixer_switch.waitingSound()
-        
+        self.mixer_neon.waitingSound()
+        self.sprite_neon_group.showSprite(self.screen)
+
         
         
         
