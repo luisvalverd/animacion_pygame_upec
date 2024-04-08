@@ -81,6 +81,8 @@ class Game:
 
     self.switch_time = 30
 
+    self.stop = 4 * 60
+
   def handleSpriteNeon(self):
     self.neon = createIntroSprite(NEON_IMG, 0, 0)
     addSpriteAGroup(self.sprite_neon_group, self.neon)
@@ -175,7 +177,10 @@ class Game:
         self.mixer_neon.waitingSound()
         self.sprite_neon_group.showSprite(self.screen)
 
-        
+        if self.stop >= 0:
+          self.stop -= 1
+        else:
+          break
         
         
 
