@@ -1,4 +1,3 @@
-import pygame
 from random import randint
 from domain.config import *
 from domain.particle import ParticleRule # type: ignore
