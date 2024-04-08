@@ -53,7 +53,7 @@ class Game:
     self.mixer_people.set_volume(0.2)
 
     self.switch_sound = pygame.mixer.Sound(SWITCH_DOWN)
-    self.mixer_switch = SoundController(1, self.switch_sound, 1, 20)
+    self.mixer_switch = SoundController(1, self.switch_sound, 4, 1)
     self.mixer_switch.set_volume(0.8)
 
     # channel de musica de fondo
