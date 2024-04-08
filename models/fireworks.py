@@ -15,7 +15,7 @@ class Firework:
     self.firework = ParticleRule(randint(0, WIN_WIDTH), WIN_HEIGHT, True, self.colors)
     self.exploded = False
     self.particles = []
-    self.min_max_particles = VECTOR(200, 600)
+    self.min_max_particles = VECTOR(100, 200)
 
   def explode(self):
     amount = randint(int(self.min_max_particles.x), int(self.min_max_particles.y))

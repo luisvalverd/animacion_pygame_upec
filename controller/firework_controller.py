@@ -8,6 +8,7 @@ class FireworkAnimation(HandlerAnimation):
     self.__fireworks = fireworks
     self.transition_speed = transition_speed
     self.screen = screen
+    self.duration_animation = 16 * 60
 
     # llamado de variables privadas
     self.__waiting_done = self._HandlerAnimation__waiting_done
@@ -26,6 +27,11 @@ class FireworkAnimation(HandlerAnimation):
     self.stop()
 
   def updatePositionFirework(self):
-    update(self.screen, self.__fireworks)
+    if self.duration_animation >= 0:
+      self.duration_animation -= 1
+      update(self.screen, self.__fireworks)
+      return False
+    else:
+      return True
     
 

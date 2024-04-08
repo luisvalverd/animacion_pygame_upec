@@ -1,5 +1,5 @@
 import pygame
-from controller.sounds_controller import SoundController
+from controller.sounds_controller import SoundController # type: ignore
 from domain.config import *
 from domain.intro_rule import createAnimation, createIntroSprite
 from domain.sprites_group_rule import createSpritesGroup, addSpriteAGroup

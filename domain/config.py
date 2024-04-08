@@ -8,12 +8,23 @@ WIN_HEIGHT = 970
 LOGO_UPEC_LEFT = "img/logo_upec_left.jpeg"
 LOGO_UPEC_RIGHT = "img/logo_upec_right.jpeg"
 PEOPLE_1 = "img/people_group_1.png"
+PEOPLE_2 = "img/people_group_2.png"
 
 # ruta de los audios
-BG_MUSIC ="sounds/background_music.mp3"
+BG_MUSIC = "sounds/background_music.mp3"
+NEON_SOUND = "sounds/neon_effect.wav"
+PEOPLE_CELEBRATING = "sounds/fireworks_sound.mp3"
+PEOPLE_ENTRANCE = "sounds/people_entrance.wav"
+SWITCH_DOWN = "sounds/switch.wav"
+
+# font
+FONT_BIG_BLUE = "fonts/BigBlueTerminal/BigBlueTerm437NerdFont-Regular.ttf"
 
 # vector 
 VECTOR = pygame.math.Vector2
+
+# text upec
+TEXT_UPEC = "Feliz 18 Aniversario UPEC"
 
 # gravedad
 GRAVITY = VECTOR(0, 0.26)
