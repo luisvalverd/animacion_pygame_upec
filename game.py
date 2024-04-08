@@ -114,9 +114,10 @@ class Game:
         
 
       # people group
-      self.handler_people.waitingAnimation()
-      if not self.handler_people.get_waiting_done():
-        self.sprite_people_group.showSprite(self.screen) 
+      if self.is_bg_img:
+        self.handler_people.waitingAnimation()
+        if not self.handler_people.get_waiting_done():
+          self.sprite_people_group.showSprite(self.screen) 
 
       # people sound
       self.mixer_people_celebrating.waitingSound()
@@ -134,21 +135,21 @@ class Game:
           self.time_show_letter -= 1
       self.time_waiting -= 1
 
+      if self.is_bg_img:
+        # Renderizar texto con contorno
+        outline = self.font.render(self.rendered_text, True, (0, 0, 0))
+        outline_text_rect = outline.get_rect(center=(WIN_WIDTH // 2, WIN_HEIGHT // 2))
+        self.screen.blit(outline, outline_text_rect.move(2, 2))
 
-      # Renderizar texto con contorno
-      outline = self.font.render(self.rendered_text, True, (0, 0, 0))
-      outline_text_rect = outline.get_rect(center=(WIN_WIDTH // 2, WIN_HEIGHT // 2))
-      self.screen.blit(outline, outline_text_rect.move(2, 2))
-
-      # Renderizar texto
-      rendered_text_surface = self.font.render(self.rendered_text, True, (56, 176, 0))
-      text_rect = rendered_text_surface.get_rect(center=(WIN_WIDTH // 2, WIN_HEIGHT // 2))
-      self.screen.blit(rendered_text_surface, text_rect)
-      
-      # maneja todo de la animacion
-      self.handler_animation_intro.waitingAnimation()      
-      if not self.handler_animation_intro.get_waiting_done():
-        self.sprites_intro_group.showSprite(self.screen)
+        # Renderizar texto
+        rendered_text_surface = self.font.render(self.rendered_text, True, (56, 176, 0))
+        text_rect = rendered_text_surface.get_rect(center=(WIN_WIDTH // 2, WIN_HEIGHT // 2))
+        self.screen.blit(rendered_text_surface, text_rect)
+        
+        # maneja todo de la animacion
+        self.handler_animation_intro.waitingAnimation()      
+        if not self.handler_animation_intro.get_waiting_done():
+          self.sprites_intro_group.showSprite(self.screen)
 
         
 
